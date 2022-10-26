@@ -45,10 +45,11 @@ if(libusb_FOUND)
         "urb.cpp"
         "queue.cpp"
         "mgr.cpp"
-        "accessors.cpp"
-    )
+        "accessors.cpp")
 endif()
 
+add_library(libps3eye SHARED driverlib.cpp)
+target_link_libraries(libps3eye ps3eye-driver)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 find_package(SDL2 QUIET)
