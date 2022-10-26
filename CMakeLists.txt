@@ -4,7 +4,7 @@ project(PS3EYEDriver)
 
 set(CMAKE_CXX_VISIBILITY_PRESET "hidden")
 set(CMAKE_CXX_STANDARD 17)
-set(SDK_LIBUSB .\\lib)
+set(SDK_LIBUSB ${CMAKE_SOURCE_DIR}\\lib)
 
 add_definitions(-DNOMINMAX)
 add_definitions(-DWIN32_LEAN_AND_MEAN)
@@ -50,6 +50,9 @@ endif()
 
 add_library(libps3eye SHARED driverlib.cpp)
 target_link_libraries(libps3eye ps3eye-driver)
+
+add_executable(libps3eye-test driverlib_test.cpp)
+target_link_libraries(libps3eye-test ps3eye-driver)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 find_package(SDL2 QUIET)
